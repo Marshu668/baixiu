@@ -10,11 +10,7 @@ $.ajax({
         $("#page").html(page)   
     }
 });
-// 处理日期时间格式
-function formateDate(date){
-    date = new Date(date)
-    return date.getFullYear() + '-' + ((date.getMonth() + 1) < 10 ? '0' + (date.getMonth() + 1) : (date.getMonth() + 1)) + '-' + (date.getDate() < 10 ? '0' + date.getDate() : date.getDate()) + ' ' + (date.getHours() < 10 ? '0' + date.getHours() : date.getHours()) + ':' + (date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes()) + ':' + (date.getSeconds() < 10 ? '0' + date.getSeconds() : date.getSeconds())
-}
+
 // 分页
 function changePage (page){
     // alert(page)  
@@ -62,3 +58,18 @@ $("#filterForm").on('submit',function(){
     return false
 })
 
+
+$('#postsBox').on('click' , '.delete', function(){
+   if( confirm('你真的要删除吗?')){
+    // 获取到管理员要删除的文章的id
+        var id = $(this).attr('data-id');
+        // alert(id);
+        $.ajax({
+            type:'delete',
+            url:'/posts/' + id,
+            success:function(){
+                location.reload();
+            }
+        })
+   }
+})
