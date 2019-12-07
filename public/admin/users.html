@@ -40,35 +40,35 @@
                   <img src="../assets/img/default.png" id="preview">
                   <i class="mask fa fa-upload"></i>
                 </label>
-                <input type="hidden" name="avatar" id="hiddenAvatar" >
+                <input type="hidden" name="avatar" id="hiddenAvatar">
               </div>
             </div>
             <div class="form-group">
               <label>邮箱</label>
-              <input class="form-control" name="email" type="email" placeholder="请输入邮箱">
+              <input name='email' class="form-control" type="email" placeholder="请输入邮箱">
             </div>
             <div class="form-group">
               <label>昵称</label>
-              <input class="form-control" name="nickName"type="text" placeholder="请输入昵称">
+              <input name='nickName' class="form-control" type="text" placeholder="请输入昵称">
             </div>
             <div class="form-group">
               <label>密码</label>
-              <input class="form-control" name="password" type="text" placeholder="请输入密码">
+              <input name='password' class="form-control" type="text" placeholder="请输入密码">
             </div>
             <div class="form-group">
               <div class="radio-inline">
-                <label><input type="radio" name="status" value="0">未激活</label>
+                <label><input name="status" value="0" type="radio">未激活</label>
               </div>
               <div class="radio-inline">
-                <label><input type="radio" name="status" value="1">激活</label>
+                <label><input name="status" value="1" type="radio">激活</label>
               </div>
             </div>
             <div class="form-group">
               <div class="radio-inline">
-                <label><input type="radio" name="role" value="admin">超级管理员</label>
+                <label><input name="role" value="admin" type="radio">超级管理员</label>
               </div>
               <div class="radio-inline">
-                <label><input type="radio" name="role" value="normal">普通用户</label>
+                <label><input name="role" value="normal" type="radio">普通用户</label>
               </div>
             </div>
             <div class="form-group">
@@ -97,30 +97,6 @@
             </thead>
             <tbody id="userBox">
               
-              <tr>
-                <td class="text-center"><input type="checkbox"></td>
-                <td class="text-center"><img class="avatar" src="../assets/img/default.png"></td>
-                <td>coder@itcast.cn</td>
-                <td>coder</td>
-                <td>激活</td>
-                <td>普通用户</td>
-                <td class="text-center">
-                  <a href="javascript:;" class="btn btn-default btn-xs">编辑</a>
-                  <a href="javascript:;" class="btn btn-danger btn-xs">删除</a>
-                </td>
-              </tr>
-              <tr>
-                <td class="text-center"><input type="checkbox"></td>
-                <td class="text-center"><img class="avatar" src="../assets/img/default.png"></td>
-                <td>coder@itcast.cn</td>
-                <td>coder</td>
-                <td>激活</td>
-                <td>普通用户</td>
-                <td class="text-center">
-                  <a href="javascript:;" class="btn btn-default btn-xs">编辑</a>
-                  <a href="javascript:;" class="btn btn-danger btn-xs">删除</a>
-                </td>
-              </tr>
             </tbody>
           </table>
         </div>
@@ -169,16 +145,15 @@
   <script src="../assets/vendors/bootstrap/js/bootstrap.js"></script>
   <script src="../assets/vendors/art-template/template-web.js"></script>
   <script>NProgress.done()</script>
-  <!-- 用户列表模版 -->
   <script type="text/html" id="userTpl">
     {{each data}}
     <tr>
       <td class="text-center">
-        <input type="checkbox" class="userStatus" data-id="{{$value._id}}">
+        <input type="checkbox" class='userStatus' data-id='{{$value._id}}'>
       </td>
       <td class="text-center">
         {{if $value.avatar}}
-        <img class="avatar" src="{{$value.avatar}}">
+         <img class="avatar" src="{{$value.avatar}}">
         {{/if}}
       </td>
       <td>{{$value.email}}</td>
@@ -186,63 +161,60 @@
       <td>{{$value.status == 0 ? '未激活' : '激活'}}</td>
       <td>{{$value.role == 'admin' ? '管理员' : '普通用户'}}</td>
       <td class="text-center">
-        <a href="javascript:;" class="btn btn-default btn-xs edit" data-id="{{$value._id}}">编辑</a>
-        <a href="javascript:;" class="btn btn-danger btn-xs delete" data-id="{{$value._id}}">删除</a>
+        <a href="javascript:;" class="btn btn-default btn-xs edit" data-id='{{$value._id}}'>编辑</a>
+        <a href="javascript:;" class="btn btn-danger btn-xs delete" data-id='{{$value._id}}'>删除</a>
       </td>
     </tr>
-  {{/each}}
-  
+    {{/each}}
   </script>
-  <!-- 用户 信息修改模版 -->
   <script type="text/html" id="modifyTpl">
-    <form id="modifyForm" data-id="{{_id}}">
-        <h2>修改用户信息</h2>
+    <form id="modifyForm" data-id='{{_id}}'>
+      <h2>修改用户信息</h2>
+      <div class="form-group">
+        <label>头像</label>
         <div class="form-group">
-          <label>头像</label>
-          <div class="form-group">
-            <label class="form-image">
-              <input id="avatar" type="file">
-              {{if avatar}}
-              <img src="{{avatar}}" id = "preview">
-              {{else}}
-              <img src="../assets/img/default.png" id="preview">
-              {{/if}}
-              <i class="mask fa fa-upload"></i>
-            </label>
-            <input type="hidden" name="avatar" id="hiddenAvatar" value="{{avatar}}">
-          </div>
+          <label class="form-image">
+            <input id="avatar" type="file">
+            {{if avatar}}
+            <img src="{{avatar}}" id="preview" alt="">
+            {{else}}
+            <img src="../assets/img/default.png" id="preview">
+            {{/if}}
+            <i class="mask fa fa-upload"></i>
+          </label>
+          <input type="hidden" name="avatar" id="hiddenAvatar"
+          value='{{avvatar}}'>
         </div>
-        <div class="form-group">
-          <label>邮箱</label>
-          <input class="form-control" name="email" type="email" placeholder="请输入邮箱" value="{{email}}">
+      </div>
+      <div class="form-group">
+        <label>邮箱</label>
+        <input  class="form-control" type="email" placeholder="请输入邮箱" name='email' value='{{email}}'>
+      </div>
+      <div class="form-group">
+        <label>昵称</label>
+        <input  class="form-control" type="text" placeholder="请输入昵称" name='nickName' value='{{nickName}}'>
+      </div>
+      <div class="form-group">
+        <div class="radio-inline">
+          <label><input name="status" value="0" type="radio" {{status == 0 ? 'checked' : ''}}>未激活</label>
         </div>
-        <div class="form-group">
-          <label>昵称</label>
-          <input class="form-control" name="nickName"type="text" placeholder="请输入昵称" value="{{nickName}}">
+        <div class="radio-inline">
+          <label><input name="status" value="1" type="radio" {{status == 1 ? 'checked' : ''}}>激活</label>
         </div>
-       
-        <div class="form-group">
-          <div class="radio-inline">
-            <label><input type="radio" name="status" value="0" {{status == 0 ? 'checked' : ''}}>未激活</label>
-          </div>
-          <div class="radio-inline">
-            <label><input type="radio" name="status" value="1" {{status == 1 ? 'checked' : ''}}>激活</label>
-          </div>
+      </div>
+      <div class="form-group">
+        <div class="radio-inline">
+          <label><input name="role" value="admin" type="radio" {{role == 'admin' ? 'checked' : ''}}>超级管理员</label>
         </div>
-        <div class="form-group">
-          <div class="radio-inline">
-            <label><input type="radio" name="role" value="admin" {{role == 'admin' ? 'checked' : ''}}>超级管理员</label>
-          </div>
-          <div class="radio-inline">
-            <label><input type="radio" name="role" value="normal" {{role == 'normal' ? 'checked' : ''}}>普通用户</label>
-          </div>
+        <div class="radio-inline">
+          <label><input name="role" value="normal" type="radio" {{role == 'normal' ? 'checked' : ''}}>普通用户</label>
         </div>
-        <div class="form-group">
-          <button class="btn btn-primary" type="submit">修改</button>
-        </div>
-      </form>
-  
+      </div>
+      <div class="form-group">
+        <button class="btn btn-primary" type="submit">修改</button>
+      </div>
+    </form>
   </script>
-  <script src="../assets/js/user.js"></script>
+  <script src="../assets/js/users.js"></script>
 </body>
 </html>

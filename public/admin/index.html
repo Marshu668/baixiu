@@ -3,14 +3,12 @@
 <head>
   <meta charset="utf-8">
   <title>Dashboard &laquo; Admin</title>
-  <!-- 登陆拦截 -->
   <script src="/login/status"></script>
   <script>
     if(!isLogin){
       location.href = 'login.html'
     }
   </script>
-
   <link rel="stylesheet" href="../assets/vendors/bootstrap/css/bootstrap.css">
   <link rel="stylesheet" href="../assets/vendors/font-awesome/css/font-awesome.css">
   <link rel="stylesheet" href="../assets/vendors/nprogress/nprogress.css">
@@ -25,7 +23,7 @@
       <button class="btn btn-default navbar-btn fa fa-bars"></button>
       <ul class="nav navbar-nav navbar-right">
         <li><a href="profile.html"><i class="fa fa-user"></i>个人中心</a></li>
-        <li><a href="javascript:;" id="logout"><i class="fa fa-sign-out"></i>退出</a></li>
+        <li><a href="javascript:;" id='logout'><i class="fa fa-sign-out"></i>退出</a></li>
       </ul>
     </nav>
     <div class="container-fluid">
@@ -95,26 +93,22 @@
   <script>NProgress.done()</script>
   <script>
   $('#logout').on('click',function(e){
-    // 做退出确认
-    var isConfirm = confirm('你确定要退出吗?');
-
+    var isConfirm = confirm('确认退出吗?')
     if(isConfirm){
       $.ajax({
         url:'/logout',
         type:'post',
         success:function(){
-          // 跳转到页面
           location.href = '/admin/login.html'
         },
         error:function(){
           alert('退出失败')
         }
-      });
+      })
     }
   })
   
-  
-  
   </script>
+
 </body>
 </html>
